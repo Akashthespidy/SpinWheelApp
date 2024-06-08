@@ -1,0 +1,22 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  div {
+    margin: 20px;
+  }
+  
+  input {
+    margin: 5px;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 5px 10px;
+  }
+  

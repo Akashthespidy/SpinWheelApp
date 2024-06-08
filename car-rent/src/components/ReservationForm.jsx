@@ -13,6 +13,7 @@ const ReservationForm = () => {
   const [duration, setDuration] = useState('');
   const [weekCount,setWeekCount] = useState();
   const [dayCount,setDayCount] = useState();
+  const [discount, setDiscount] = useState();
   const [collisionDamageWaiver, setCollisionDamageWaiver] = useState(false);
   const [liabilityInsurance, setLiabilityInsurance] = useState(false);
   const [rentalTax, setRentalTax] = useState(false);
@@ -22,6 +23,7 @@ const ReservationForm = () => {
     collisionDamageWaiver: 9,
     liabilityInsurance: 15,
     rentalTax: 11.5,
+    discountAmount:0,
     total: 0,
   });
 
@@ -54,6 +56,7 @@ const ReservationForm = () => {
   useEffect(() => {
     if (selectedCar && (weekCount || dayCount)) {
       let total = 0;
+      let d = 0;
       if(dayCount){
         total += (selectedCar.rates.daily*dayCount);
       }
@@ -69,14 +72,19 @@ const ReservationForm = () => {
       if (rentalTax) {
         total += (total * charges.rentalTax) / 100;
       }
+      if(discount){
+        d =  (total*discount)/100;
+        total-= (total*discount)/100;
+      }
       setCharges(prevCharges => ({
         ...prevCharges,
         daily: selectedCar.rates.daily,
         weekly: selectedCar.rates.weekly,
+        discountAmount: d,
         total
       }));
     }
-  }, [selectedCar, collisionDamageWaiver, liabilityInsurance, rentalTax, dayCount, weekCount]);
+  }, [selectedCar,discount, collisionDamageWaiver, liabilityInsurance, rentalTax, dayCount, weekCount]);
 
   useEffect(() => {
     if (pickupDate && returnDate) {
@@ -133,7 +141,7 @@ const ReservationForm = () => {
             </div>
             <div className="mb-3">
               <label className="form-label">Discount</label>
-              <input type="text" className="form-control" />
+              <input type="number"  min="0" max="100" className="form-control" onChange={(e)=>setDiscount(e.target.valueAsNumber)}/>
             </div>
           </div>
         </div>
@@ -205,7 +213,15 @@ const ReservationForm = () => {
                   <tr>
                     <td>Rental Tax</td>
                     <td colSpan="2">{charges.rentalTax}%</td>
-                    <td>${((selectedCar?.rates.daily + selectedCar?.rates.weekly + (collisionDamageWaiver ? charges.collisionDamageWaiver : 0) + (liabilityInsurance ? charges.liabilityInsurance : 0)) * charges.rentalTax / 100).toFixed(2)}</td>
+                    <td>${((selectedCar?.rates.daily*dayCount + selectedCar?.rates.weekly*weekCount + (collisionDamageWaiver ? charges.collisionDamageWaiver : 0) + (liabilityInsurance ? charges.liabilityInsurance : 0)) * charges.rentalTax / 100).toFixed(2)}</td>
+                  </tr>
+                )}
+                {discount && discount>0 && (
+                  <tr>
+                    <td>Discount</td>
+                    <td>{discount}%</td>
+                    <td></td>
+                    <td>{(charges.discountAmount).toFixed(2)}</td>
                   </tr>
                 )}
                 <tr>
