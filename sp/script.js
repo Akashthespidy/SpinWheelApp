@@ -37,6 +37,11 @@ document.getElementById('spin-button').addEventListener('click', function() {
         const normalizedAngle = (360 - finalRotation + segmentAngle / 2) % 360;
         const winnerIndex = Math.floor(normalizedAngle / segmentAngle) % segments;
 
+        // Mark the winner's position with the arrow
+        const arrow = document.getElementById('arrow');
+        const arrowRotation = finalRotation + winnerIndex * segmentAngle + segmentAngle / 2;
+        arrow.style.transform = `rotate(${arrowRotation}deg)`;
+
         alert(`The winner is: ${wheel.children[winnerIndex].textContent}!`);
         wheel.style.transition = 'none';
         wheel.style.transform = `rotate(${finalRotation}deg)`;
