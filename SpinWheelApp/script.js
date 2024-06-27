@@ -26,7 +26,7 @@ document.getElementById('spin-button').addEventListener('click', function() {
 
     setTimeout(() => {
         const finalRotation = randomDegree % 360;
-        const winnerIndex = Math.floor((finalRotation + segmentAngle / 2) % 360 / segmentAngle) % segments;
+        const winnerIndex = Math.floor((360 - finalRotation + segmentAngle / 2) % 360 / segmentAngle) % segments;
         alert(`The winner is: ${wheel.children[winnerIndex].textContent}!`);
         wheel.style.transition = 'none';
         wheel.style.transform = `rotate(${finalRotation}deg)`;
