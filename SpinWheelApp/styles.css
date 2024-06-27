@@ -3,7 +3,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: #3e75b4;
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -18,7 +18,7 @@ body {
 
 .left-section {
     text-align: center;
-    background-color: #f9f9f9; /* Light gray background color */
+    background-color: #e7dede; 
     padding: 20px;
     border-radius: 10px;
     position: relative;
@@ -27,12 +27,12 @@ body {
 .wheel {
     width: 400px;
     height: 400px;
-    border-radius: 50%;
+    border-radius: 100%;
     border: 10px solid #000;
     position: relative;
     overflow: hidden;
     transform: rotate(0deg);
-    cursor: pointer; /* Add cursor pointer for interaction */
+    cursor: pointer; 
 }
 
 .segment {
@@ -46,11 +46,11 @@ body {
     line-height: 150px;
     border: 1px solid #000;
     box-sizing: border-box;
-    cursor: pointer; /* Add cursor pointer for interaction */
+    cursor: pointer; 
 }
 
 .segment:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* Light background color on hover */
+    background-color: rgba(0, 0, 0, 0.1); 
 }
 
 .segment:hover::after {
@@ -64,36 +64,31 @@ body {
     padding: 5px 10px;
     font-size: 12px;
     border-radius: 5px;
-    pointer-events: none; /* Prevent hover content from blocking clicks */
-    z-index: 1000; /* Ensure hover content is above other elements */
+    pointer-events: none; 
+    z-index: 1000;
 }
 
 .right-section {
     text-align: center;
-    background-color: #ffffff; /* White background color */
+    background-color: #b88a8a; 
     padding: 20px;
     border-radius: 10px;
-    width: 400px; /* Adjust width as needed */
+    width: 400px; 
 }
 
-#spin-time-input,
-#name-input {
+#spin-time-input, #name-input {
     width: 100%;
     margin-top: 10px;
-    padding: 10px; /* Increase padding to make inputs larger */
+    padding: 10px;
     font-size: 16px;
-}
-
-#name-input {
-    margin-bottom: 9px; /* Add margin bottom for spacing */
 }
 
 #name-list {
     list-style-type: none;
     padding: 0;
     margin-top: 20px;
-    max-height: 400px; /* Limit height to enable scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 400px; 
+    overflow-y: auto;
 }
 
 #name-list li {
@@ -105,21 +100,29 @@ body {
 
 #name-list li button {
     margin-left: 10px;
-    padding: 10px 20px; /* Increase padding to make buttons larger */
+    padding: 5px 10px; 
     font-size: 16px;
     cursor: pointer;
 }
 
-#add-name-button,
-#spin-button {
-    padding: 15px 30px; /* Increase padding to make buttons larger */
-    background-color: #9c2727;
-    font-size: 18px;
-    border-radius: 5px;
-}
-
-h1,
-p {
+h1, h2 {
     margin: 10px 0;
     font-weight: normal;
+}
+
+#add-name-button, #spin-button {
+    margin-top: 10px;
+    padding: 10px 20px; 
+    font-size: 18px; 
+
+.segment-name {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
 }

@@ -54,7 +54,7 @@ function addNameToWheel(name) {
     segment.style.backgroundColor = color;
 
     const segments = wheel.children.length;
-    const angle = 360 / (segments);
+    const angle = 360 / (segments+1);
 
     for (let i = 0; i < segments; i++) {
         wheel.children[i].style.transform = `rotate(${angle * i}deg) translate(-100%, -100%)`;
