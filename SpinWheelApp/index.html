@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spin Wheel</title>
     <link rel="stylesheet" href="styles.css">
-
 </head>
 <body>
-    <div class="container">
-        <div class="left-section">
-            <h1>Best of Luck!</h1>
-            <p>Spin Your Luck</p>
-            <div id="arrow" class="fa-solid fa-caret-up"></div>
-            <div id="wheel" class="wheel"></div>
+    <div class="left-section">
+        <div class="header">
+            <h1>WINNER</h1>
+            <h5 id="winner">NONE</h5>
+            <p>Spin time: <span id="spinTimeShow">4</span> </p>
         </div>
-        <div class="right-section">
-            <input type="text" id="name-input" placeholder="Enter a name">
-            <button id="add-name-button">Add Name</button>
-            <input type="number" id="spin-time-input" min="1" max="10" placeholder="Spin time (seconds)">
-            <button id="spin-button">Spin</button>
-            <ul id="name-list"></ul>
+        <div class="wheel-container">
+            <canvas id="canvas" width="500" height="500"></canvas>
+            <div class="center-circle" onclick="spin()">
+                <div class="triangle"></div>
+            </div>
+        </div>
+    </div>
+    <div class="right-section">
+        <div class="inputArea">
+            <input type="text" id="nameInput" placeholder="Enter name">
+            <button onclick="addName()">Add Name</button>
+        </div>
+        <div class="spin-time">
+            <input type="number" id="spinTimeInput" placeholder="Enter spin time (seconds)">
+            <button onclick="setSpinTime()">Set Spin Time</button>
+            <button onclick="spin()">Spin</button>
+        </div>
+        <div class="name-list">
+            <ul id="nameList"></ul>
         </div>
     </div>
     <script src="script.js"></script>
